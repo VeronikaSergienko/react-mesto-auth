@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "./Header.js";
 
 function Register({ onRegister }) {
@@ -55,9 +55,9 @@ function Register({ onRegister }) {
             Зарегистрироваться
           </button>
         </form>
-        <div className="registration__signin">
-          <p>Уже зарегистрированы?</p>
-          <Link to="/sign-in" className="registration__login-link">
+        <div className="registration-form__signin">
+          <p className="registration-form__text">Уже зарегистрированы? </p>
+          <Link to="/sign-in" className="registration-form__login-link">
             Войти
           </Link>
         </div>

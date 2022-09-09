@@ -10,3 +10,8 @@
     line-height: 22px;
     font-weight: 400px;
 }
+
+.registration-form__save-button:hover {
+    opacity: 0.85;
+    cursor: pointer;
+}
