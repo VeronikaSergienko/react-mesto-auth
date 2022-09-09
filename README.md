@@ -17,5 +17,3 @@
 **GitHub**
 
 * [Ссылка на проект](https://veronikasergienko.github.io/react-mesto-auth)
-* [Ссылка на проект](https://veronikasergienko.github.io/react-mesto)
-* [Ссылка на проект](https://veronikasergienko.github.io/mesto-react)
