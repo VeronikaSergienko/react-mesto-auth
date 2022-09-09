@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import headerLogo from "../images/header-logo.svg";
-import { Link } from 'react-router-dom'; 
 import Header from "./Header.js";
 
 function Login({ onLogin }) {
@@ -18,8 +16,6 @@ function Login({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(email, password);
-
     // Передаём значения управляемых компонентов во внешний обработчик
     onLogin({
       email,

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import headerLogo from "../images/header-logo.svg";
 import { Link, useHistory } from "react-router-dom";
 import Header from "./Header.js";
 
 function Register({ onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   function handleChangeEmail(e) {
     setEmail(e.target.value);
@@ -17,9 +15,6 @@ function Register({ onRegister }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(email, password);
-
-    // Передаём значения управляемых компонентов во внешний обработчик
     onRegister({
       email,
       password,

@@ -148,7 +148,6 @@ function App() {
       .register({ email, password })
       .then((res) => {
         if (res.data) {
-          console.log(res);
           setTextInfoPopupOpen("Вы успешно зарегистрировались!");
           setIsSucceed(true);
           setInfoPopupOpen(true);
@@ -167,7 +166,6 @@ function App() {
     mestoAuth
       .authorize({ email, password })
       .then((res) => {
-        // console.log(res);
         localStorage.setItem("jwt", JSON.stringify(res.token));
         setLoggedIn(true);
         auth(res.token);
@@ -186,7 +184,6 @@ function App() {
       .getContent(jwt)
       .then((res) => {
         if (res.data.email) {
-          console.log(res);
           setEmail(res.data.email);
           setLoggedIn(true);
           history.push("/mesto-react");
@@ -199,10 +196,8 @@ function App() {
 
   const handleSignOut = () => {
     setEmail("");
-    console.log(loggedIn);
     setLoggedIn(false);
     localStorage.removeItem("jwt");
-    console.log(loggedIn);
   };
 
   return (
