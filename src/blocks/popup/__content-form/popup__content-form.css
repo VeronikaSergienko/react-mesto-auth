@@ -1,4 +1,4 @@
-.popup__content {
+.popup__content-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 603px) {
-    .popup__content {
+    .popup__content-form {
         width: 282px;
     }
 }

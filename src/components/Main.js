@@ -1,11 +1,14 @@
 import React from "react";
 import { Card } from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+import Header from "./Header.js";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, array }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, array, userEmail, onSignOut }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
+    <>
+    <Header headerText={"Выйти"} headerLink={"/sign-in"} userEmail={userEmail} onSignOut={onSignOut} />
     <main className="content">
       <section className="profile">
         <div
@@ -47,6 +50,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike
         })}
       </section>
     </main>
+    </>
   );
 }
 

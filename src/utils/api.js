@@ -76,12 +76,46 @@ class Api {
       }),
     }).then(this._checkResponse);
   }
+
+  register({ password, email }) {
+    return fetch(`${this._url}/signup`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ password, email }),
+    }).then(this._checkResponse);
+  }
+
+  authorize({ password, email }) {
+    return fetch(`${this._url}/signin`, {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({ password, email }),
+    }).then(this._checkResponse);
+  }
+
+  getContent(token) {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization" : `Bearer ${token}`
+    } 
+    }).then(this._checkResponse);
+  }
+
 }
 
 const api = new Api({
   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-45/",
   headers: {
     authorization: "a5c762bc-210a-4e68-9fc7-978e4674d050",
+    "Content-Type": "application/json",
+  },
+});
+
+export const mestoAuth = new Api({
+  baseUrl: "https://auth.nomoreparties.co",
+  headers: {
     "Content-Type": "application/json",
   },
 });

@@ -1,35 +1,16 @@
 import React from "react";
+import Popup from "./Popup";
 
-function ImagePopup(props) {
+function ImagePopup({ onClose, card: { isOpen, card: { name, link } } }) {
   return (
-    <div
-      className={`popup popup_type_place-image ${
-        props.card.isOpen ? "popup_opened" : ""
-      }`}
-      onClick={() => {
-        props.onClose();
-      }}
-    >
-      <div
-        className="popup__content-image"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          aria-label="close"
-          type="button"
-          className="popup__clouse-button"
-          onClick={() => {
-            props.onClose();
-          }}
-        ></button>
-        <img
-          className="popup__place-image"
-          src={`${props.card.card.link}`}
-          alt={`${props.card.card.name}`}
-        />
-        <p className="popup__place-title">{`${props.card.card.name}`}</p>
-      </div>
-    </div>
+    <Popup name="place-image" isOpen={isOpen} onClose={onClose} type="image">
+      <img
+        className="popup__place-image"
+        src={`${link}`}
+        alt={`${name}`}
+      />
+      <p className="popup__place-title">{`${name}`}</p>
+    </Popup>
   );
 }
 
