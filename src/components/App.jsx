@@ -39,12 +39,6 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/");
-    }
-  }, [history, loggedIn]);
-
-  useEffect(() => {
-    if (loggedIn) {
       Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
         .then(([profile, cards]) => {
           setcurrentUser(profile);
@@ -57,6 +51,12 @@ function App() {
         });
     }
   }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push("/");
+    }
+  }, [history, loggedIn]);
 
   const closeAllPopups = () => {
     setEditProfilePopupOpen(false);
