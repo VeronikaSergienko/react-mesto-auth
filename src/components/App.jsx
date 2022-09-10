@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {
-  Route,
-  Switch,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import api from "../utils/api";
 import Footer from "./Footer.js";
 import Main from "./Main.js";
@@ -19,13 +14,14 @@ import ProtectedRoute from "./ProtectedRoute";
 import { mestoAuth } from "../utils/api";
 import InfoTooltip from "./InfoTooltip";
 
-
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
   const [isInfoPopupOpen, setInfoPopupOpen] = useState(false);
-  const [textInfoPopupOpen, setTextInfoPopupOpen] = useState("Вы успешно зарегистрировались!");
+  const [textInfoPopupOpen, setTextInfoPopupOpen] = useState(
+    "Вы успешно зарегистрировались!"
+  );
   const [isSucceed, setIsSucceed] = useState(true);
   const [selectedCard, setSelectedCard] = useState({ isOpen: false, card: {} });
   const [currentUser, setcurrentUser] = useState({});
@@ -38,25 +34,26 @@ function App() {
     let jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth(JSON.parse(jwt));
-    } else {
     }
   }, []);
 
   useEffect(() => {
     if (loggedIn) {
-      history.push("/mesto-react");
+      history.push("/");
     }
   }, [history, loggedIn]);
 
   useEffect(() => {
-    Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
-      .then(([profile, cards]) => {
-        setcurrentUser(profile);
-        setCurrentCards(cards);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (loggedIn) {
+      Promise.all([api.getUserInfoApi(), api.getInitialCardsApi()])
+        .then(([profile, cards]) => {
+          setcurrentUser(profile);
+          setCurrentCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const closeAllPopups = () => {
@@ -169,9 +166,9 @@ function App() {
         localStorage.setItem("jwt", JSON.stringify(res.token));
         setLoggedIn(true);
         auth(res.token);
-        history.push("/mesto-react");
+        history.push("/");
       })
-      .catch((err) => {        
+      .catch((err) => {
         setTextInfoPopupOpen("Что-то пошло не так! Попробуйте ещё раз.");
         setIsSucceed(false);
         setInfoPopupOpen(true);
@@ -186,7 +183,7 @@ function App() {
         if (res.data.email) {
           setEmail(res.data.email);
           setLoggedIn(true);
-          history.push("/mesto-react");
+          history.push("/");
         }
       })
       .catch((err) => {
@@ -205,7 +202,8 @@ function App() {
       <div className="page">
         <Switch>
           <ProtectedRoute
-            path="/mesto-react"
+            exact
+            path="/"
             loggedIn={loggedIn}
             component={Main}
             onEditProfile={handleEditProfileClick}
@@ -225,11 +223,7 @@ function App() {
             <Login onLogin={handleLogin} />
           </Route>
           <Route>
-            {loggedIn ? (
-              <Redirect to="/mesto-react" />
-            ) : (
-              <Redirect to="/sign-in" />
-            )}
+            {loggedIn ? <Redirect exact to="/" /> : <Redirect to="/sign-in" />}
           </Route>
         </Switch>
         <Footer />

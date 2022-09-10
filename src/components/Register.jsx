@@ -42,7 +42,7 @@ function Register({ onRegister }) {
           </div>
           <div className="registration-form-conteiner">
             <input
-              type="text"
+              type="password"
               placeholder="Пароль"
               value={password}
               onChange={handleChangePassword}
