@@ -43,17 +43,7 @@ function App() {
         .then(([profile, cards]) => {
           setcurrentUser(profile);
           setCurrentCards(cards);
-          console.log(currentCards);
-          console.log(currentUser);
         })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (loggedIn) {
       history.push("/");
     }
   }, [history, loggedIn]);
